@@ -1,0 +1,6 @@
+version: '3'
+services:
+  spring-petclinic-rest:
+    image: springcommunity/spring-petclinic-rest
+    ports:
+      - "9966:9966"
