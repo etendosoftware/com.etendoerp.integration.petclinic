@@ -1,7 +1,4 @@
 
-
-http://localhost:9966/petclinic/swagger-ui/index.html
-
 # Data correlation
 
 ![der](petclinic-ermodel.png)
@@ -13,8 +10,6 @@ http://localhost:9966/petclinic/swagger-ui/index.html
 ### Java package
 
 `com.etendoerp.integration.petstore`
-
-
 
 # Mapping owner
 
