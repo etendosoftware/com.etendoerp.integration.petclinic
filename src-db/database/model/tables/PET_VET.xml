@@ -45,11 +45,18 @@
         <default/>
         <onCreateDefault/>
       </column>
+      <column name="PET_SPECIALTY_ID" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false">
+        <default/>
+        <onCreateDefault/>
+      </column>
       <foreign-key foreignTable="AD_CLIENT" name="PET_VET_AD_CLIENT">
         <reference local="AD_CLIENT_ID" foreign="AD_CLIENT_ID"/>
       </foreign-key>
       <foreign-key foreignTable="AD_ORG" name="PET_VET_AD_ORG">
         <reference local="AD_ORG_ID" foreign="AD_ORG_ID"/>
+      </foreign-key>
+      <foreign-key foreignTable="PET_SPECIALTY" name="PET_VET_SPEC">
+        <reference local="PET_SPECIALTY_ID" foreign="PET_SPECIALTY_ID"/>
       </foreign-key>
       <check name="PET_VET_ISACTIVE_CHK"><![CDATA[ISACTIVE IN ('Y', 'N')]]></check>
     </table>
