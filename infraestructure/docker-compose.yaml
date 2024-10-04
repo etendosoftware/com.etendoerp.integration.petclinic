@@ -14,7 +14,7 @@ services:
   spring-petclinic:
     image: springcommunity/spring-framework-petclinic
     ports:
-      - "8080:8080"
+      - "8090:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-petclinic:5432/petclinic
       - SPRING_DATASOURCE_USERNAME=postgres
