@@ -1,37 +1,32 @@
 version: '3'
-
 services:
-  spring-petclinic:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=mysql
-    depends_on:
-      - mysql
-
   spring-petclinic-rest:
     image: springcommunity/spring-petclinic-rest
     ports:
       - "9966:9966"
     environment:
-      - SPRING_PROFILES_ACTIVE=mysql
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-petclinic:5432/petclinic
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=petclinic
     depends_on:
-      - mysql
+      - postgres-petclinic
 
-  mysql:
-    image: mysql:8.0
+  spring-petclinic:
+    image: springcommunity/spring-framework-petclinic
     ports:
-      - "3306:3306"
+      - "8080:8080"
     environment:
-      - MYSQL_ROOT_PASSWORD=petclinic
-      - MYSQL_DATABASE=petclinic
-      - MYSQL_USER=petclinic
-      - MYSQL_PASSWORD=petclinic
-    volumes:
-      - mysql-data:/var/lib/mysql
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-petclinic:5432/petclinic
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=petclinic
+    depends_on:
+      - postgres-petclinic
 
-volumes:
-  mysql-data:
+  postgres-petclinic:
+    image: postgres:9.6.0
+    container_name: postgres-petclinic
+    environment:
+      - POSTGRES_PASSWORD=petclinic
+      - POSTGRES_DB=petclinic
+    ports:
+      - "5432:5432"
